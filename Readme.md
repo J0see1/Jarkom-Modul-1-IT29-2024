@@ -121,7 +121,8 @@ Dapat dilihat dengan jelas informasi attacker salah satunya adalah tools yang di
 Kemudian saya melakukan `follow HTTP stream` terhadap packet tersebut.
 ![Screenshot 2024-03-31 002103](https://github.com/J0see1/Jarkom-Modul-1-IT29-2024/assets/143849730/e0cc5205-21de-4eff-8399-9601b4aedc8b)
 
-Untuk menemukan login attempt yang berhasil dilakukan attacker, saya melakukan `find : 302 found` pada HTTP Stream tersebut![Screenshot 2024-04-01 075615](https://github.com/J0see1/Jarkom-Modul-1-IT29-2024/assets/143849730/58d34de3-6045-46d8-a891-fca004fdab56)
+Untuk menemukan login attempt yang berhasil dilakukan attacker, saya melakukan `find : 302 found` pada HTTP Stream tersebut
+![Screenshot 2024-04-01 075615](https://github.com/J0see1/Jarkom-Modul-1-IT29-2024/assets/143849730/58d34de3-6045-46d8-a891-fca004fdab56)
 
 Setelah melakukan find terhadap HTTP stream tersebut, ditemukan salah satu login attempt dengan code 302 found dan ditemukan juga username beserta password yang berhasil digunakan oleh attacker yaitu `admin:sUp3rSecretp@ssw0rd`![Screenshot 2024-04-01 073709](https://github.com/J0see1/Jarkom-Modul-1-IT29-2024/assets/143849730/bf683b85-e436-4082-93e7-0524bc0e267d)
 
