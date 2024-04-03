@@ -67,14 +67,65 @@ dan correct login attempt : 1
 1. Untuk mendapatkan IP address attacker maka dapat dilihat melalui salah satu packet, disini packet yang saya analisis adalah packet `Login incorrect` yang merupakan response dari IP server untuk IP attacker. Maka dapat disimpulkan bahwa IP attacker adalah `IP destination` packet tersebut yaitu : `10.30.3.4`
 ![Screenshot 2024-03-31 001317](https://github.com/J0see1/Jarkom-Modul-1-IT29-2024/assets/143849730/75fde370-a71c-447d-ac08-c0a5044872a4)
 
-
 ## 5. creds
+
+1. Untuk mencari username dan password saya menggunakan filter “Login successful” dengan command `frame contains "Login successful"`
+
+![image](https://github.com/J0see1/Jarkom-Modul-1-IT29-2024/assets/134209563/4db4c171-cdad-404a-a04c-f168df6496d3)
+
+![Screenshot 2024-03-30 234655](https://github.com/J0see1/Jarkom-Modul-1-IT29-2024/assets/134209563/357b6b50-f88b-4bc1-8cbc-7b459e1c159c)
+  
+![Screenshot 2024-03-31 000903](https://github.com/J0see1/Jarkom-Modul-1-IT29-2024/assets/134209563/d81aceb8-c724-4b4c-86ca-9f257bcf0a28)
+
+2. Berikut jawaban ke netcat beserta flag yang didapat
+
+![Screenshot 2024-03-31 000954](https://github.com/J0see1/Jarkom-Modul-1-IT29-2024/assets/134209563/2ebb921b-e4be-4554-99c1-9102d15f8fd7)
 
 ## 6. malwleowleo 
 
+1. Untuk menemukan nama malware yang dikirimkan oleh pengirim, saya menggunakan filter yang sama dari nomor creds. Nama malware terdapat pada packet yang sama dengan nomor sebelumnya, yaitu m4L1c10us_W4re.c.
+
+![image](https://github.com/J0see1/Jarkom-Modul-1-IT29-2024/assets/134209563/488349ef-5456-457d-8d96-86716c55a508)
+
+2. Berikut ncat dan flag dari nomor ini:
+
+![Screenshot 2024-03-31 001308](https://github.com/J0see1/Jarkom-Modul-1-IT29-2024/assets/134209563/dc3a5460-5c06-42e8-aafb-16112148ba43)
+
 ## 7. whoami
 
+1. Untuk menemukan nama dari attacker, karena file yang dikirimkan dari attacker adalah program c. Saya melakukan display filter dengan `int main` karena itu merupakan header program yang sering ditemui di program c. `frame contains "int main"`
+
+![image](https://github.com/J0see1/Jarkom-Modul-1-IT29-2024/assets/134209563/fb0da870-60bb-4ae9-92f0-6cd8900c0149)
+
+![image](https://github.com/J0see1/Jarkom-Modul-1-IT29-2024/assets/134209563/564c484f-2d6a-484b-a534-62926316e48a)
+
+2. Terlihat bahwa isi dari fungsi main merupakan string dengan format base64. Kemudian saya melakukan decode pada string tersebut dan menemukan kalimat di bawah ini:
+
+![Screenshot 2024-03-31 001650](https://github.com/J0see1/Jarkom-Modul-1-IT29-2024/assets/134209563/e91f1341-731a-4a16-9660-d0707cd2c2f6)
+
+3. Kemudian dari hasil decode tersebut saya masukan ke ncat dan berhasil mendapatkan flagnya
+
+![image](https://github.com/J0see1/Jarkom-Modul-1-IT29-2024/assets/134209563/9d2df4de-7bd0-4cd8-b35f-13df738d1423)
+
 ## 8. secret
+
+1. Nomor ini kita disuruh untuk menemukan file lain yang disisipkan attacker ke dalam sistem. Untuk menemukan semua file yang dikirimkan attacker kita bisa melakukan filter kata `Stor` karena command `STOR` digunakan untuk upload file. filternya sebagai berikut `frame contains "STOR"`.
+
+![image](https://github.com/J0see1/Jarkom-Modul-1-IT29-2024/assets/134209563/d471b360-efc6-440f-9921-2e5d0b4ad0a7)
+
+2. Setelah kita tau nama dari file yang disisipkan selain program .c tadi, kita akan mencari packet dengan protocol FTP-DATA untuk melakukan download file mirza.jpg tersebut.
+
+![image](https://github.com/J0see1/Jarkom-Modul-1-IT29-2024/assets/134209563/25e7d56a-b885-4f71-9c69-a1506b88c2d1)
+
+![image](https://github.com/J0see1/Jarkom-Modul-1-IT29-2024/assets/134209563/6e0c465e-5d67-4e30-94ab-14ee489e4ed5)
+
+3. Berikut gambar yang berhasil di download
+
+![Screenshot 2024-03-31 001828](https://github.com/J0see1/Jarkom-Modul-1-IT29-2024/assets/134209563/8d47120d-db58-41c9-b7e2-e311103622d6)
+
+4. Karena soal meminta kata-kata yang dikutip maka saya hanya memasukan kata MIO MIRZA ke nccat, dan berikut didapatkan flag dari soal tadi
+
+![image](https://github.com/J0see1/Jarkom-Modul-1-IT29-2024/assets/134209563/6d46a255-ba7a-4d87-8ee6-8075daf05a84)
 
 ## 9. fuzz
 
